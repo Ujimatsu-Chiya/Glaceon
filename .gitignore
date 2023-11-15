@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+env/
+bin/
+lib/
+include/
+# ...
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Compiled source
+*.o
+*.so
+*.out
+*.exe
+
+# Temporary files
+*~
+*.swp
+*.bak
+*.log
+
+Ran_Graph.py
+Ran_Array.py
+main.py
+test.py
