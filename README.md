@@ -1,6 +1,8 @@
-# chino
+# Glaceon
 
 一款关于算法题的随机数生成器。
+
+Glaceon名字来源：宝可梦中，冰伊布的英文名。
 
 比起[CYaRon](https://github.com/luogu-dev/cyaron)，其优势在于：
 
