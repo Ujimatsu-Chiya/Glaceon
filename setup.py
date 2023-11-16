@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='chino',
-    version='0.0.1',
+    name='Glaceon',
+    version='0.0.0',
     license='LGPL-3.0',
     author='Ujimatsu Chiya',
     author_email='ujimatsuchiya016@gmail.com',
@@ -11,7 +11,7 @@ setup(
     description='A random number generator on algorithmic questions.',
     long_description='A longer description of your project',
     long_description_content_type='text/markdown',
-    url='https://github.com/Ujimatsu-Chiya/chino',
+    url='https://github.com/Ujimatsu-Chiya/Glaceon',
     packages=find_packages(),
     install_requires=[
 

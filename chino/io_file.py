@@ -6,7 +6,7 @@ import subprocess
 class IOFile:
     running_cmd = None
 
-    def __init__(self, prefix: str = "", id=0, **kwargs):
+    def __init__(self, prefix: str = "", id: int = None, **kwargs):
         """
         Initialize an IOFile instance.
 
@@ -17,7 +17,7 @@ class IOFile:
         """
         input_extension = kwargs.get("extension", ".in")
         output_extension = kwargs.get("extension", ".out")
-
+        id = "" if id is None else str(id)
         self.input_file_name = "{}{}{}".format(prefix, id, input_extension)
         self.output_file_name = "{}{}{}".format(prefix, id, output_extension)
         disable_output = kwargs.get("disable_output", False)
@@ -32,6 +32,7 @@ class IOFile:
 
     def __del__(self):
         self.input_file.close()
+        self.output_file.close()
 
     def __input_write_aux(self, *args, **kwargs):
         """
@@ -98,7 +99,7 @@ class IOFile:
         """
         os_type = platform.system().lower()
         if os_type == "windows":
-            extension = ".exe" 
+            extension = ".exe"
         elif os_type == "linux":
             extension = ".o"
         else:
