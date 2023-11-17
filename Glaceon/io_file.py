@@ -6,7 +6,7 @@ import subprocess
 class IOFile:
     running_cmd = None
 
-    def __init__(self, prefix: str = "", id: int = None, **kwargs):
+    def __init__(self, path_dir :str = "",prefix: str = "", id: int = None, **kwargs):
         """
         Initialize an IOFile instance.
 
@@ -18,8 +18,8 @@ class IOFile:
         input_extension = kwargs.get("extension", ".in")
         output_extension = kwargs.get("extension", ".out")
         id = "" if id is None else str(id)
-        self.input_file_name = "{}{}{}".format(prefix, id, input_extension)
-        self.output_file_name = "{}{}{}".format(prefix, id, output_extension)
+        self.input_file_name = os.path.join(path_dir,"{}{}{}".format(prefix, id, input_extension))
+        self.output_file_name = os.path.join(path_dir,"{}{}{}".format(prefix, id, output_extension))
         disable_output = kwargs.get("disable_output", False)
         if IOFile.running_cmd is None:
             disable_output = True

@@ -56,6 +56,24 @@ class ArrayGen:
         return [rand.evaluate(f) for _ in range(n)]
 
     @staticmethod
+    def gen_matrix(n: int, m:int, f):
+        """
+        Generate a list of evaluated values using a specified function.
+
+        Parameters:
+            - `n` (int): Length of the generated list.
+            - `f`: The function or value to evaluate.
+
+        Returns:
+            - list: The list of evaluated results.
+
+        Examples:
+            >>> ArrayGenerator.gen_list(5, 10)
+            [10, 10, 10, 10, 10]
+        """
+        return [ArrayGen.gen_list(m, f) for _ in range(n)]
+
+    @staticmethod
     def universe_sample(m: int, l: int, r: int = None):
         """
         Generate a random sample of size m from the universe [l, r].

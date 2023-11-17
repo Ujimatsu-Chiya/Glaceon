@@ -31,7 +31,7 @@ include/
 *.bak
 *.log
 
-Ran_Graph.py
-Ran_Array.py
+gen.py
 main.py
-test.py
+template.py
+.gitignore
