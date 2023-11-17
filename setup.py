@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='Glaceon',
+    name='Sylveon',
     version='0.0.0',
     license='LGPL-3.0',
     author='Ujimatsu Chiya',
@@ -11,7 +11,7 @@ setup(
     description='A random number generator on algorithmic questions.',
     long_description='A longer description of your project',
     long_description_content_type='text/markdown',
-    url='https://github.com/Ujimatsu-Chiya/Glaceon',
+    url='https://github.com/Ujimatsu-Chiya/Sylveon',
     packages=find_packages(),
     install_requires=[
 
