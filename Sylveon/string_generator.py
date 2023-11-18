@@ -13,6 +13,10 @@ class StringGen:
 
         Returns:
             - str: The generated random string.
+
+        Examples:
+            >>> StringGen.gen_string(5, "abcde")
+            'dcbae'
         """
         return rand.gen_string(n, char_set)
 
@@ -28,5 +32,9 @@ class StringGen:
 
         Returns:
             - str: The generated matrix of random strings.
+
+        Examples:
+            >>> StringGen.gen_string_matrix(3, 4, "abcde")
+            'cdeab\nabcde\nedcba'
         """
         return "\n".join(StringGen.gen_string(m, char_set) for _ in range(n))

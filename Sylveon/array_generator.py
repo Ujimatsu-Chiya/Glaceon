@@ -15,7 +15,7 @@ class ArrayGen:
             - list: The generated random permutation.
 
         Examples:
-            >>> ArrayGenerator.gen_permutation(3)
+            >>> ArrayGen.gen_permutation(3)
             [2, 1, 3]
         """
         return rand.gen_permutation(n)
@@ -32,7 +32,7 @@ class ArrayGen:
             - list: The identity permutation.
 
         Examples:
-            >>> ArrayGenerator.identity_permutation(3)
+            >>> ArrayGen.identity_permutation(3)
             [1, 2, 3]
         """
         return rand.identity_permutation(n)
@@ -50,26 +50,27 @@ class ArrayGen:
             - list: The list of evaluated results.
 
         Examples:
-            >>> ArrayGenerator.gen_list(5, 10)
+            >>> ArrayGen.gen_list(5, 10)
             [10, 10, 10, 10, 10]
         """
         return [rand.evaluate(f) for _ in range(n)]
 
     @staticmethod
-    def gen_matrix(n: int, m:int, f):
+    def gen_matrix(n: int, m: int, f):
         """
-        Generate a list of evaluated values using a specified function.
+        Generate a 2D matrix of evaluated values using a specified function.
 
         Parameters:
-            - `n` (int): Length of the generated list.
+            - `n` (int): Number of rows in the matrix.
+            - `m` (int): Number of columns in the matrix.
             - `f`: The function or value to evaluate.
 
         Returns:
-            - list: The list of evaluated results.
+            - list of lists: The 2D matrix of evaluated results.
 
         Examples:
-            >>> ArrayGenerator.gen_list(5, 10)
-            [10, 10, 10, 10, 10]
+            >>> ArrayGen.gen_matrix(3, 2, 10)
+            [[10, 10], [10, 10], [10, 10]]
         """
         return [ArrayGen.gen_list(m, f) for _ in range(n)]
 

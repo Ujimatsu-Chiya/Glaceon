@@ -6,7 +6,7 @@ import subprocess
 class IOFile:
     running_cmd = None
 
-    def __init__(self, path_dir :str = "",prefix: str = "", id: int = None, **kwargs):
+    def __init__(self, path_dir: str = "", prefix: str = "", id: int = None, **kwargs):
         """
         Initialize an IOFile instance.
 
@@ -18,8 +18,8 @@ class IOFile:
         input_extension = kwargs.get("extension", ".in")
         output_extension = kwargs.get("extension", ".out")
         id = "" if id is None else str(id)
-        self.input_file_name = os.path.join(path_dir,"{}{}{}".format(prefix, id, input_extension))
-        self.output_file_name = os.path.join(path_dir,"{}{}{}".format(prefix, id, output_extension))
+        self.input_file_name = os.path.join(path_dir, "{}{}{}".format(prefix, id, input_extension))
+        self.output_file_name = os.path.join(path_dir, "{}{}{}".format(prefix, id, output_extension))
         disable_output = kwargs.get("disable_output", False)
         if IOFile.running_cmd is None:
             disable_output = True
@@ -32,7 +32,8 @@ class IOFile:
 
     def __del__(self):
         self.input_file.close()
-        self.output_file.close()
+        if self.output_file:
+            self.output_file.close()
 
     def __input_write_aux(self, *args, **kwargs):
         """
@@ -151,7 +152,7 @@ class IOFile:
 
     def gen_output(self):
         if self.output_file is None:
-            raise "Output is disable."
+            raise Exception("Output is disabled.")
         self.input_file.flush()
         self.input_file.seek(0)
         result = subprocess.run(self.running_cmd, stdin=self.input_file, stdout=self.output_file,
@@ -160,14 +161,4 @@ class IOFile:
             raise Exception("The return code is {}. Here are the error messages from stderr:\n{}".
                             format(result.returncode, result.stderr))
         else:
-            print("Input file {} generate output successfully.".format(self.input_file_name))
-
-
-if __name__ == '__main__':
-    test_data = IOFile("p", 1)
-    test_data.input_writeln(1, 2, 3, 4, [1, 2, 3], [1, 4, 5, 6], [[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-    test_data.input_write_mat([[1, 2, 3], [4, 5, 6]])
-    test_data.input_writeln("aaa", "b", ["AAA", '1234', ["456", 456]])
-    IOFile.set_std("main.cpp")
-    IOFile.set_std("main.cpp", "-o", "main3.exe")
-    IOFile.set_std("1.py", "-o", "main3.exe")
+            print("Input file {} generated output successfully.".format(self.input_file_name))

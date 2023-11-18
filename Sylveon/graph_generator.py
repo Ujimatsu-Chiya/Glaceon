@@ -17,7 +17,7 @@ class GraphGen:
             - Graph: The generated cycle graph.
 
         Examples:
-            >>> cycle_graph = GraphGenerator.gen_cycle(5, directed=True, weighted=[lambda: 1])
+            >>> cycle_graph = GraphGen.gen_cycle(5, directed=True, weighted=[lambda: 1])
         """
         g = Graph(n, **kwargs)
         for i in range(1, n):
@@ -39,7 +39,7 @@ class GraphGen:
             - Graph: The generated grid graph.
 
         Examples:
-            >>> grid_graph = GraphGenerator.gen_grid(3, 4)
+            >>> grid_graph = GraphGen.gen_grid(3, 4)
         """
         g = Graph(r * c, **kwargs)
         for i in range(1, r + 1):
@@ -64,7 +64,7 @@ class GraphGen:
             - Graph: The generated wheel graph.
 
         Examples:
-            >>> wheel_graph = GraphGenerator.gen_wheel(6, weighted=[lambda: 2])
+            >>> wheel_graph = GraphGen.gen_wheel(6, weighted=[lambda: 2])
 
         Raises:
             - ValueError: If n is less than 4.
@@ -81,14 +81,61 @@ class GraphGen:
 
     @staticmethod
     def gen_chain(n, **kwargs):
+        """
+        Generate a chain graph with n vertices.
+
+        Parameters:
+            - `n` (int): Number of vertices in the chain.
+            - `**kwargs`: Additional arguments to pass to the Graph constructor.
+
+        Returns:
+            - Graph: The generated chain graph.
+
+        Examples:
+            >>> chain_graph = GraphGen.gen_chain(5, directed=True, weighted=[lambda: 1])
+        """
         return GraphGen.gen_tree(n, chain_rate=1.0, **kwargs)
 
     @staticmethod
     def gen_star(n, **kwargs):
+        """
+        Generate a star graph with n vertices.
+
+        Parameters:
+            - `n` (int): Number of vertices in the star.
+            - `**kwargs`: Additional arguments to pass to the Graph constructor.
+
+        Returns:
+            - Graph: The generated star graph.
+
+        Examples:
+            >>> star_graph = GraphGen.gen_star(5, weighted=[lambda: 2])
+
+        Raises:
+            - ValueError: If n is less than 3.
+        """
         return GraphGen.gen_tree(n, star_rate=1.0, **kwargs)
 
     @staticmethod
     def gen_tree(n, chain_rate: float = 0, star_rate: float = 0, **kwargs):
+        """
+        Generate a tree graph with n vertices.
+
+        Parameters:
+            - `n` (int): Number of vertices in the tree.
+            - `chain_rate` (float): Proportion of edges forming a chain in the tree (default is 0).
+            - `star_rate` (float): Proportion of edges forming a star in the tree (default is 0).
+            - `**kwargs`: Additional arguments to pass to the Graph constructor.
+
+        Returns:
+            - Graph: The generated tree graph.
+
+        Examples:
+            >>> tree_graph = GraphGen.gen_tree(6, chain_rate=0.5, weighted=[lambda: 1])
+
+        Raises:
+            - ValueError: If the sum of chain_rate and star_rate is greater than 1.
+        """
         if not 0 <= chain_rate <= 1 or not 0 <= star_rate <= 1 or not 0 <= chain_rate + star_rate <= 1:
             raise ValueError('''The parameters chain_rate and star_rate must meet the following conditions:
 - 0 <= chain_rate <= 1
