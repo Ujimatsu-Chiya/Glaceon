@@ -31,7 +31,8 @@ include/
 *.bak
 *.log
 
-gen.py
-main.py
+# My Private Files
 template.py
-.gitignore
+cache/
+main*.py
+gen*.py

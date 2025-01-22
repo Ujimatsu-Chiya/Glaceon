@@ -1,6 +1,6 @@
 # Sylveon
 
-一款关于算法题的随机数生成器。
+一款关于XCPC(X Collegiate Programming Contest)，OI(Olympiad in Informatics) 的随机测试数据生成器。
 
 Sylveon名字来源：宝可梦中，仙子伊布的英文名。
 

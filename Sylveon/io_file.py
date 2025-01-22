@@ -1,6 +1,7 @@
 import os
 import platform
 import subprocess
+import zipfile
 
 
 class IOFile:
@@ -15,8 +16,8 @@ class IOFile:
             - `id` (int): ID for the file names.
             - `**kwargs`: Additional arguments, such as 'extension' and 'disable_output'.
         """
-        input_extension = kwargs.get("extension", ".in")
-        output_extension = kwargs.get("extension", ".out")
+        input_extension = kwargs.get("in_extension", ".in")
+        output_extension = kwargs.get("out_extension", ".out")
         id = "" if id is None else str(id)
         self.input_file_name = os.path.join(path_dir, "{}{}{}".format(prefix, id, input_extension))
         self.output_file_name = os.path.join(path_dir, "{}{}{}".format(prefix, id, output_extension))
@@ -162,3 +163,15 @@ class IOFile:
                             format(result.returncode, result.stderr))
         else:
             print("Input file {} generated output successfully.".format(self.input_file_name))
+
+    def get_data_path(self):
+        result = [self.input_file_name]
+        if self.output_file:
+            result.append(self.output_file_name)
+        return result
+
+
+def zip_data(output_zip: str, files_to_zip: list):
+    with zipfile.ZipFile(output_zip, 'w') as zipf:
+        for file in files_to_zip:
+            zipf.write(file)

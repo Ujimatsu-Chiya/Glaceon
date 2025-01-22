@@ -68,6 +68,7 @@ class Graph:
         if self.adjacency_mat:
             self.weight_func_list = []
         self.__edge_list = [defaultdict(list) for _ in range(n + 1)]
+        self.__finished = False
 
     def edge_num(self):
         """
@@ -111,18 +112,21 @@ class Graph:
             - str: String representation of the graph.
         """
         output_edge_list = list(self.__iterator_edge())
-        if self.shuffle:
-            random.shuffle(output_edge_list)
-            permutation = gen_permutation(self.n)
+        print(output_edge_list, self.__finished)
+        if not self.__finished:
+            self.__finished = True
+            if self.shuffle:
+                random.shuffle(output_edge_list)
+                permutation = gen_permutation(self.n)
+                for e in output_edge_list:
+                    e.start = permutation[e.start - 1]
+                    e.end = permutation[e.end - 1]
+                    if not self.directed and int_1bit():
+                        e.start, e.end = e.end, e.start
             for e in output_edge_list:
-                e.start = permutation[e.start - 1]
-                e.end = permutation[e.end - 1]
-                if not self.directed and int_1bit():
-                    e.start, e.end = e.end, e.start
-        for e in output_edge_list:
-            e.start += self.first_index - 1
-            e.end += self.first_index - 1
-
+                e.start += self.first_index - 1
+                e.end += self.first_index - 1
+        print(output_edge_list, self.__finished)
         if not self.adjacency_mat:
             return "\n".join(str(e) for e in output_edge_list)
         else:
